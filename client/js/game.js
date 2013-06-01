@@ -55,6 +55,14 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
             this.cursors = {};
 
             this.sprites = {};
+            
+            // For moving Map
+            this.mapGrabbed = false;
+            this.xMouseGrabbed = 0;
+            this.yMouseGrabbed = 0;
+            this.xCameraGrabbed = 0;
+            this.yCameraGrabbed = 0;
+            this.previousMovedPosition = {};
         
             // tile animation
             this.animatedTiles = null;
@@ -1913,7 +1921,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 this.previousClickPosition = pos;
             }
 	        
-    	    if(this.started
+    	    /*if(this.started
     	    && this.player
     	    && !this.isZoning()
     	    && !this.isZoningTile(this.player.nextGridX, this.player.nextGridY)
@@ -1941,7 +1949,45 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
         	    else {
         	        this.makePlayerGoTo(pos.x, pos.y);
         	    }
-        	}
+        	}*/
+        	
+        	
+            /*x = Math.round( pos.x - (Math.floor(this.renderer.camera.gridW / 2) ) ),
+            y = Math.round( pos.y - (Math.floor(this.renderer.camera.gridH / 2) ) );
+            this.renderer.camera.setGridPosition(x, y);
+            this.resetZone();*/
+        	
+        },
+        
+        grabMap: function() {
+            this.mapGrabbed = true;
+            this.xMouseGrabbed = this.mouse.x;
+            this.yMouseGrabbed = this.mouse.y;
+            this.xCameraGrabbed = this.renderer.camera.gridX;
+            this.yCameraGrabbed = this.renderer.camera.gridY;
+        },
+        
+        ungrabMap: function() {
+            this.mapGrabbed = false;
+        },
+        
+        moveMap: function() {
+            var mx = this.mouse.x
+            var my = this.mouse.y
+            var c = this.renderer.camera
+            var s = this.renderer.scale
+            var ts = this.renderer.tilesize
+            
+            var x = this.xCameraGrabbed + Math.round((this.xMouseGrabbed - mx) / (ts * s));
+            var y = this.yCameraGrabbed + Math.round((this.yMouseGrabbed - my) / (ts * s));
+            
+            if(x === this.renderer.camera.gridX
+            && y === this.renderer.camera.gridY) {
+                return;
+            }
+            
+            this.renderer.camera.setGridPosition(x, y);
+            this.resetZone();
         },
         
         isMobOnSameTile: function(mob, x, y) {

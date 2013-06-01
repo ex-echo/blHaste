@@ -261,6 +261,16 @@ define(['jquery', 'app'], function($, App) {
                 	app.hideWindows();
                     // $('#chatinput').focus();
                 });
+                $('#foreground').mousedown(function(event) {
+                    if(game) {
+                	    game.grabMap();
+                	}
+                });
+                $('#foreground').mouseup(function(event) {
+                    if(game) {
+                	    game.ungrabMap();
+                	}
+                });
             }
 
             $('body').unbind('click');
@@ -300,6 +310,9 @@ define(['jquery', 'app'], function($, App) {
             	app.setMouseCoordinates(event);
             	if(game.started) {
             	    game.movecursor();
+            	    if (game.mapGrabbed) {
+            	        game.moveMap();
+            	    }
             	}
             });
 

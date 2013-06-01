@@ -64,7 +64,8 @@ function(Camera, Item, Character, Player, Timer) {
             else {
                 scale = 3;
             }
-        
+            
+            scale = scale / 2;        
             return scale;
         },
     

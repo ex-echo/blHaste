@@ -128,7 +128,7 @@ module.exports = Player = Character.extend({
                     var dmg = Formulas.dmg(self.weaponLevel, mob.armorLevel);
                     
                     if(dmg > 0) {
-                        mob.receiveDamage(dmg, self.id);
+                        mob.receiveDamage(dmg * 30, self.id);
                         self.server.handleMobHate(mob.id, self.id, dmg);
                         self.server.handleHurtEntity(mob, self, dmg);
                     }
