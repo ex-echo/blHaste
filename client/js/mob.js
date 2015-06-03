@@ -5,7 +5,7 @@ define(['character'], function(Character) {
         init: function(id, kind) {
             this._super(id, kind);
         
-            this.aggroRange = 1;
+            this.aggroRange = 0;
             this.isAggressive = true;
         }
     });

@@ -50,8 +50,8 @@ module.exports = Mob = Character.extend({
             this.hatelist.push({ id: playerId, hate: points });
         }
 
-        /*
-        log.debug("Hatelist : "+this.id);
+        
+        /*log.debug("Hatelist : "+this.id);
         _.each(this.hatelist, function(obj) {
             log.debug(obj.id + " -> " + obj.hate);
         });*/
