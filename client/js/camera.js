@@ -13,10 +13,21 @@ define(function() {
         },
     
         rescale: function() {
-            var factor = this.renderer.mobile ? 1 : 2;
+            var w = window.innerWidth,
+                h = window.innerHeight;
         
-            this.gridW = 15 * 3 * factor;
-            this.gridH = 7 * 3 * factor;
+            if(w <= 1000) {
+                factor = 1;
+            }
+            else if(w <= 1500 || h <= 870) {
+                factor = 2;
+            }
+            else {
+                factor = 3;
+            }
+        
+            this.gridW = 15 * 2 * factor;
+            this.gridH = 7 * 2 * factor;
         
             log.debug("---------");
             log.debug("Factor:"+factor);
