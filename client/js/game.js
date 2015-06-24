@@ -1914,7 +1914,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
                 this.previousClickPosition = pos;
             }
 	        
-    	    /*if(this.started
+    	    if(this.started
     	    && this.player
     	    && !this.isZoning()
     	    && !this.isZoningTile(this.player.nextGridX, this.player.nextGridY)
@@ -1942,7 +1942,7 @@ function(InfoManager, BubbleManager, Renderer, Map, Animation, Sprite, AnimatedT
         	    else {
         	        this.makePlayerGoTo(pos.x, pos.y);
         	    }
-        	}*/
+        	}
         },
         
         isMobOnSameTile: function(mob, x, y) {

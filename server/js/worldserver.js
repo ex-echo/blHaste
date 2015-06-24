@@ -351,9 +351,9 @@ module.exports = World = cls.Class.extend({
         this.addEntity(player);
         this.players[player.id] = player;
         this.outgoingQueues[player.id] = [];
-        this.forEachMob(function(mob) {
-                mob.setTarget(player);
-            });
+        //this.forEachMob(function(mob) {
+        //        mob.setTarget(player);
+        //    });
         //log.info("Added player : " + player.id);
     },
     
